@@ -91,7 +91,6 @@ PokedexPokemon parsePokedexPokemon(std::string line)
     name = token;
     
     std::getline(pokemonLine >> std::ws, token, ',');
-    std::cout << "Token is " << token << std::endl; 
     type1 = stoT(token);
     
     std::getline(pokemonLine >> std::ws, token, ',');
@@ -108,8 +107,11 @@ PokedexPokemon parsePokedexPokemon(std::string line)
     
     std::getline(pokemonLine >> std::ws, token);
     flavorText = token.substr(1, token.size() - 2); // removes quotes
-    // std::cout << "This is flavor text" << std::endl;
-    // std::cout << flavorText;
-    std::cout << index << " " << name << " " << Ttos(type1) << " " << Ttos(type2) << " " << baseEvolution << " " << avgWeight << " " << avgHeight << " " << flavorText;
+    
+    #if 1
+    // input check
+    std::cout << index << " " << name << " " << Ttos(type1) << " " << Ttos(type2) << " " << baseEvolution << " " << avgWeight << " " << avgHeight << " " << flavorText << std::endl;
+    #endif
+
     return PokedexPokemon(index, name, type1, type2, baseEvolution, avgWeight, avgHeight, flavorText);
 }

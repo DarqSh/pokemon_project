@@ -35,9 +35,10 @@ protected:
     Type type2;
 
 public:
-    Pokemon(int index, std::string name, Type type1, Type type2) : index(index), name(name), type1(type1), type2(type2)
-    {
-    }
+    Pokemon(int index, std::string name, Type type1, Type type2) : index(index), name(name), type1(type1), type2(type2){}
+    int getIndex();
+    std::string getName();
+    Type getType(); // define the getters/setters
 };
 
 class PokedexPokemon : public Pokemon
@@ -49,14 +50,12 @@ protected:
     std::string flavorText;
 
 public:
-    PokedexPokemon(int index, std::string name, Type type1, Type type2, bool baseEvolution, float avgWeight, float avgHeight, std::string flavorText) : Pokemon(index, name, type1, type2), baseEvolution(baseEvolution), avgWeight(avgWeight), avgHeight(avgHeight), flavorText(flavorText)
-    {
-    }
+    PokedexPokemon(int index, std::string name, Type type1, Type type2, bool baseEvolution, float avgWeight, float avgHeight, std::string flavorText) : Pokemon(index, name, type1, type2), baseEvolution(baseEvolution), avgWeight(avgWeight), avgHeight(avgHeight), flavorText(flavorText){}
 };
 
 class InventoryPokemon : public Pokemon
 {
-public:
+protected:
     // New attributes
     double weight;
     double height;
@@ -69,15 +68,13 @@ public:
     int baseAttackPower;
     std::string specialAttack;
     int specialAttackPower;
-};
 
+public:
+    InventoryPokemon(int index, std::string name, Type type1, Type type2, double weight, double height, int baseHP, int baseCP, int baseDefense, std::string baseAttack, int baseAttackPower, std::string specialAttack, int specialAttackPower) 
+    : Pokemon(index, name, type1, type2), weight (weight), height (height), baseHP (baseHP), baseCP (baseCP), baseDefense (baseDefense), baseAttack (baseAttack), baseAttackPower (baseAttackPower), specialAttack (specialAttack), specialAttackPower (specialAttackPower){}
+};
 
 Type stoT(std::string stringType);
 std::string Ttos(Type type);
 
 PokedexPokemon parsePokedexPokemon(std::string line);
-
-
-
-
-
