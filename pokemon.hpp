@@ -73,6 +73,7 @@ public:
 
 
 Type stoT(std::string stringType);
+std::string Ttos(Type type);
 
 PokedexPokemon parsePokedexPokemon(std::string line);
 
