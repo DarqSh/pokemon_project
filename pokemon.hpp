@@ -38,7 +38,7 @@ public:
     Pokemon(int index, std::string name, Type type1, Type type2) : index(index), name(name), type1(type1), type2(type2){}
     int getIndex();
     std::string getName();
-    Type getType(); // define the getters/setters
+    std::pair<Type, Type> getType(); // define the getters/setters
 };
 
 class PokedexPokemon : public Pokemon
@@ -49,8 +49,10 @@ protected:
     float avgHeight; // in m
     std::string flavorText;
 
+
 public:
     PokedexPokemon(int index, std::string name, Type type1, Type type2, bool baseEvolution, float avgWeight, float avgHeight, std::string flavorText) : Pokemon(index, name, type1, type2), baseEvolution(baseEvolution), avgWeight(avgWeight), avgHeight(avgHeight), flavorText(flavorText){}
+    bool baseEvoCheck();
 };
 
 class InventoryPokemon : public Pokemon
@@ -74,7 +76,7 @@ public:
     : Pokemon(index, name, type1, type2), weight (weight), height (height), baseHP (baseHP), baseCP (baseCP), baseDefense (baseDefense), baseAttack (baseAttack), baseAttackPower (baseAttackPower), specialAttack (specialAttack), specialAttackPower (specialAttackPower){}
 };
 
-Type stoT(std::string stringType);
-std::string Ttos(Type type);
+Type TypestoT(std::string stringType);
+std::string TypeTtos(Type type);
 
-PokedexPokemon parsePokedexPokemon(std::string line);
+PokedexPokemon parsePokedexPokemon(const std::string& line);

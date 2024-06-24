@@ -5,7 +5,25 @@
 #include <sstream>
 #include <algorithm>
 
-Type stoT(std::string stringType)
+int Pokemon::getIndex()
+{
+    return this->index;
+}
+std::string Pokemon::getName()
+{
+    return this->name;
+}
+std::pair<Type, Type> Pokemon::getType()
+{
+    return std::pair<Type, Type>(this->type1, this->type2);
+}
+
+bool PokedexPokemon::baseEvoCheck()
+{
+    return this->baseEvolution;
+}
+
+Type TypeStoT(std::string stringType)
 {
     if (stringType.find("Normal") != std::string::npos)
         return Type::Normal;
@@ -46,30 +64,48 @@ Type stoT(std::string stringType)
     return Type::None;
 }
 
-std::string Ttos(Type type)
+std::string TypeTtoS(Type type)
 {
-    if (type == Type::Normal) return "Normal";
-    if (type == Type::Fire) return "Fire";
-    if (type == Type::Water) return "Water";
-    if (type == Type::Electric) return "Electric";
-    if (type == Type::Grass) return "Grass";
-    if (type == Type::Ice) return "Ice";
-    if (type == Type::Fighting) return "Fighting";
-    if (type == Type::Poison) return "Poison";
-    if (type == Type::Ground) return "Ground";
-    if (type == Type::Flying) return "Flying";
-    if (type == Type::Psychic) return "Psychic";
-    if (type == Type::Bug) return "Bug";
-    if (type == Type::Rock) return "Rock";
-    if (type == Type::Ghost) return "Ghost";
-    if (type == Type::Dragon) return "Dragon";
-    if (type == Type::Dark) return  "Dark";
-    if (type == Type::Steel) return "Steel";
-    if (type == Type::Fairy) return "Fairy";
-    return "None" ;
+    if (type == Type::Normal)
+        return "Normal";
+    if (type == Type::Fire)
+        return "Fire";
+    if (type == Type::Water)
+        return "Water";
+    if (type == Type::Electric)
+        return "Electric";
+    if (type == Type::Grass)
+        return "Grass";
+    if (type == Type::Ice)
+        return "Ice";
+    if (type == Type::Fighting)
+        return "Fighting";
+    if (type == Type::Poison)
+        return "Poison";
+    if (type == Type::Ground)
+        return "Ground";
+    if (type == Type::Flying)
+        return "Flying";
+    if (type == Type::Psychic)
+        return "Psychic";
+    if (type == Type::Bug)
+        return "Bug";
+    if (type == Type::Rock)
+        return "Rock";
+    if (type == Type::Ghost)
+        return "Ghost";
+    if (type == Type::Dragon)
+        return "Dragon";
+    if (type == Type::Dark)
+        return "Dark";
+    if (type == Type::Steel)
+        return "Steel";
+    if (type == Type::Fairy)
+        return "Fairy";
+    return "None";
 }
 
-PokedexPokemon parsePokedexPokemon(std::string line)
+PokedexPokemon parsePokedexPokemon(const std::string &line)
 {
     std::istringstream pokemonLine(line);
     std::string token;
@@ -83,35 +119,35 @@ PokedexPokemon parsePokedexPokemon(std::string line)
     float avgWeight;
     float avgHeight;
     std::string flavorText;
-    
+
     std::getline(pokemonLine >> std::ws, token, ',');
     index = std::stoi(token);
-    
+
     std::getline(pokemonLine >> std::ws, token, ',');
     name = token;
-    
+
     std::getline(pokemonLine >> std::ws, token, ',');
-    type1 = stoT(token);
-    
+    type1 = TypeStoT(token);
+
     std::getline(pokemonLine >> std::ws, token, ',');
-    type2 = stoT(token);
-    
+    type2 = TypeStoT(token);
+
     std::getline(pokemonLine >> std::ws, token, ',');
     baseEvolution = (token == "true");
-    
+
     std::getline(pokemonLine >> std::ws, token, ',');
     avgWeight = std::stof(token);
-    
+
     std::getline(pokemonLine >> std::ws, token, ',');
     avgHeight = std::stof(token);
-    
+
     std::getline(pokemonLine >> std::ws, token);
     flavorText = token.substr(1, token.size() - 2); // removes quotes
-    
-    #if 1
+
+#if 1
     // input check
-    std::cout << index << " " << name << " " << Ttos(type1) << " " << Ttos(type2) << " " << baseEvolution << " " << avgWeight << " " << avgHeight << " " << flavorText << std::endl;
-    #endif
+    std::cout << index << " " << name << " " << TypeTtoS(type1) << " " << TypeTtoS(type2) << " " << baseEvolution << " " << avgWeight << " " << avgHeight << " " << flavorText << std::endl;
+#endif
 
     return PokedexPokemon(index, name, type1, type2, baseEvolution, avgWeight, avgHeight, flavorText);
 }
