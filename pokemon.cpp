@@ -1,10 +1,13 @@
 #pragma once
+
 #include "pokemon.hpp"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <fstream>
 #include <algorithm>
 
+Pokemon::Pokemon(int index, std::string name, Type type1, Type type2) : index(index), name(name), type1(type1), type2(type2) {}
 int Pokemon::getIndex()
 {
     return this->index;
@@ -18,10 +21,28 @@ std::pair<Type, Type> Pokemon::getType()
     return std::pair<Type, Type>(this->type1, this->type2);
 }
 
+PokedexPokemon::PokedexPokemon(int index, std::string name, Type type1, Type type2, bool baseEvolution, float avgWeight, float avgHeight, std::string flavorText) : Pokemon(index, name, type1, type2), baseEvolution(baseEvolution), avgWeight(avgWeight), avgHeight(avgHeight), flavorText(flavorText) {}
 bool PokedexPokemon::baseEvoCheck()
 {
     return this->baseEvolution;
 }
+
+Attack::Attack(std::string Name, Type Type, int Power) : name(Name), type(Type), power(Power) {}
+std::string Attack::getName()
+{
+    return this->name;
+}
+Type Attack::getType()
+{
+    return this->type;
+}
+int Attack::getPower()
+{
+    return this->power;
+}
+
+InventoryPokemon::InventoryPokemon(int index, std::string name, Type type1, Type type2, double weight, double height, int baseHP, int baseCP, int baseDefense, std::string baseAttack, int baseAttackPower, std::string specialAttack, int specialAttackPower)
+    : Pokemon(index, name, type1, type2), weight(weight), height(height), baseHP(baseHP), baseCP(baseCP), baseDefense(baseDefense), baseAttack(baseAttack), baseAttackPower(baseAttackPower), specialAttack(specialAttack), specialAttackPower(specialAttackPower) {}
 
 Type TypeStoT(std::string stringType)
 {
@@ -150,4 +171,53 @@ PokedexPokemon parsePokedexPokemon(const std::string &line)
 #endif
 
     return PokedexPokemon(index, name, type1, type2, baseEvolution, avgWeight, avgHeight, flavorText);
+}
+
+std::vector<Attack> parseAttacksLine(std::istringstream& line, Type attackType)
+{
+    std::vector<Attack> attacks;
+    std::string attackStr;
+
+    while (std::getline(line, attackStr, ','))
+    {
+        std::string::size_type start = attackStr.find('(');
+        std::string::size_type end = attackStr.find(')');
+        std::string attackName = attackStr.substr(0, start - 1);
+        int power = std::stoi(attackStr.substr(start + 1, end - start - 1));
+        attacks.push_back(Attack(attackName, attackType, power));
+    }
+    return attacks;
+}
+
+void parseAttacksFile(const std::string &filename, std::vector<Attack>& baseAttacks, std::vector<Attack>& specialAttacks )
+{
+    std::ifstream file(filename);
+    std::string Line;
+    bool isBaseAttacks; // flag for differentiating between base and charged attacks
+
+    while (std::getline(file, Line))
+    {
+        if (Line.empty())
+            continue; //for deleting the space between base attacks and special attacks
+        if (Line == "Base Attacks (Fast Moves)")
+        {
+            isBaseAttacks = true;
+            continue;
+        }
+        else if (Line == "Special Attacks (Charge Moves)")
+        {
+            isBaseAttacks = false;
+            continue;
+        }
+
+    std::istringstream line(Line);
+    std::string stringType;
+
+    std::getline(line, stringType, ':');
+    Type type = TypeStoT(stringType); //string to type conversion
+
+    std::vector<Attack> attacks = parseAttacksLine(line, type);
+    if(isBaseAttacks) baseAttacks.insert(baseAttacks.end(), attacks.begin(), attacks.end()); // one of insert() functions' overloads
+    else specialAttacks.insert(specialAttacks.end(), attacks.begin(), attacks.end());
+    }
 }

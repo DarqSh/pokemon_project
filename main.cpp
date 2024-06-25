@@ -1,5 +1,7 @@
 #include "pokemon.hpp"
 #include "pokemon.cpp"
+#include "pokemon.hpp"
+#include "pokemon.cpp"
 #include <iostream>
 #include <iomanip>
 #include <string>
