@@ -126,6 +126,15 @@ std::string TypeTtoS(Type type)
     return "None";
 }
 
+void fillPokedex(const std::string &filename, std::vector<PokedexPokemon>& pokedex)
+{
+    std::ifstream file(filename);
+    std::string line;
+    while (std::getline(file, line))
+    {
+        pokedex.push_back(parsePokedexPokemon(line));
+    }
+}
 PokedexPokemon parsePokedexPokemon(const std::string &line)
 {
     std::istringstream pokemonLine(line);
@@ -165,7 +174,7 @@ PokedexPokemon parsePokedexPokemon(const std::string &line)
     std::getline(pokemonLine >> std::ws, token);
     flavorText = token.substr(1, token.size() - 2); // removes quotes
 
-#if 1
+#if 0
     // input check
     std::cout << index << " " << name << " " << TypeTtoS(type1) << " " << TypeTtoS(type2) << " " << baseEvolution << " " << avgWeight << " " << avgHeight << " " << flavorText << std::endl;
 #endif
@@ -173,7 +182,7 @@ PokedexPokemon parsePokedexPokemon(const std::string &line)
     return PokedexPokemon(index, name, type1, type2, baseEvolution, avgWeight, avgHeight, flavorText);
 }
 
-std::vector<Attack> parseAttacksLine(std::istringstream& line, Type attackType)
+std::vector<Attack> parseAttacksLine(std::istringstream &line, Type attackType)
 {
     std::vector<Attack> attacks;
     std::string attackStr;
@@ -188,8 +197,7 @@ std::vector<Attack> parseAttacksLine(std::istringstream& line, Type attackType)
     }
     return attacks;
 }
-
-void parseAttacksFile(const std::string &filename, std::vector<Attack>& baseAttacks, std::vector<Attack>& specialAttacks )
+void fillAttacks(const std::string &filename, std::vector<Attack> &baseAttacks, std::vector<Attack> &specialAttacks)
 {
     std::ifstream file(filename);
     std::string Line;
@@ -198,7 +206,7 @@ void parseAttacksFile(const std::string &filename, std::vector<Attack>& baseAtta
     while (std::getline(file, Line))
     {
         if (Line.empty())
-            continue; //for deleting the space between base attacks and special attacks
+            continue; // for deleting the space between base attacks and special attacks
         if (Line == "Base Attacks (Fast Moves)")
         {
             isBaseAttacks = true;
@@ -210,14 +218,16 @@ void parseAttacksFile(const std::string &filename, std::vector<Attack>& baseAtta
             continue;
         }
 
-    std::istringstream line(Line);
-    std::string stringType;
+        std::istringstream line(Line);
+        std::string stringType;
 
-    std::getline(line, stringType, ':');
-    Type type = TypeStoT(stringType); //string to type conversion
+        std::getline(line, stringType, ':');
+        Type type = TypeStoT(stringType); // string to type conversion
 
-    std::vector<Attack> attacks = parseAttacksLine(line, type);
-    if(isBaseAttacks) baseAttacks.insert(baseAttacks.end(), attacks.begin(), attacks.end()); // one of insert() functions' overloads
-    else specialAttacks.insert(specialAttacks.end(), attacks.begin(), attacks.end());
+        std::vector<Attack> attacks = parseAttacksLine(line, type);
+        if (isBaseAttacks)
+            baseAttacks.insert(baseAttacks.end(), attacks.begin(), attacks.end()); // one of insert() functions' overloads
+        else
+            specialAttacks.insert(specialAttacks.end(), attacks.begin(), attacks.end());
     }
 }

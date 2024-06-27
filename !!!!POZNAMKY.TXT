@@ -1,0 +1,8 @@
+!!!EXCEPTIONS FOR EEVEE AND MEW/MEWTWO
+
+
+
+Fixed the declaration of the functions TypeStoT,TypeTtoS, parseAttacksLine, parseAttacksFile in the pokemon.hpp file
+Added fillPokedex() function declaration and definition
+Changed the parseAttacksFile() name to fillAttacks() for less ambiguity
+

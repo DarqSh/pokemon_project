@@ -90,10 +90,11 @@ public:
     InventoryPokemon(int index, std::string name, Type type1, Type type2, double weight, double height, int baseHP, int baseCP, int baseDefense, std::string baseAttack, int baseAttackPower, std::string specialAttack, int specialAttackPower);
 };
 
-Type TypestoT(std::string stringType);
-std::string TypeTtos(Type type);
+Type TypeStoT(std::string stringType);
+std::string TypeTtoS(Type type);
 
+void fillPokedex(const std::string &filename, std::vector<PokedexPokemon>& pokedex);
 PokedexPokemon parsePokedexPokemon(const std::string &line);
 
-std::vector<Attack> parseAttacksLine(const std::string& line);
-void parseAttacksFile(const std::string &line);
+void fillAttacks(const std::string &filename, std::vector<Attack>& baseAttacks, std::vector<Attack>& specialAttacks);
+std::vector<Attack> parseAttacksLine(std::istringstream& line, Type attackType);
