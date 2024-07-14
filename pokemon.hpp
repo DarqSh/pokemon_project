@@ -36,9 +36,9 @@ protected:
 
 public:
     Pokemon(int index, std::string name, Type type1, Type type2);
-    int getIndex();
-    std::string getName();
-    std::pair<Type, Type> getType(); // define the getters/setters
+    int getIndex() const;
+    std::string getName() const;
+    std::pair<Type, Type> getType() const; // define the getters/setters
 };
 
 class PokedexPokemon : public Pokemon
@@ -51,7 +51,10 @@ protected:
 
 public:
     PokedexPokemon(int index, std::string name, Type type1, Type type2, bool baseEvolution, float avgWeight, float avgHeight, std::string flavorText);
-    bool baseEvoCheck();
+    bool baseEvoCheck() const;
+    float getAvgWeight() const;
+    float getAvgHeight() const;
+    std::string getFlavorText() const;
 };
 
 class Attack
@@ -63,9 +66,9 @@ protected:
 
 public:
     Attack(std::string Name, Type Type, int Power);
-    std::string getName();
-    Type getType();
-    int getPower();
+    std::string getName() const;
+    Type getType() const;
+    int getPower() const;
 };
 
 

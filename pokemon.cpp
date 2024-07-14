@@ -8,35 +8,47 @@
 #include <algorithm>
 
 Pokemon::Pokemon(int index, std::string name, Type type1, Type type2) : index(index), name(name), type1(type1), type2(type2) {}
-int Pokemon::getIndex()
+int Pokemon::getIndex() const
 {
     return this->index;
 }
-std::string Pokemon::getName()
+std::string Pokemon::getName() const
 {
     return this->name;
 }
-std::pair<Type, Type> Pokemon::getType()
+std::pair<Type, Type> Pokemon::getType() const
 {
     return std::pair<Type, Type>(this->type1, this->type2);
 }
 
 PokedexPokemon::PokedexPokemon(int index, std::string name, Type type1, Type type2, bool baseEvolution, float avgWeight, float avgHeight, std::string flavorText) : Pokemon(index, name, type1, type2), baseEvolution(baseEvolution), avgWeight(avgWeight), avgHeight(avgHeight), flavorText(flavorText) {}
-bool PokedexPokemon::baseEvoCheck()
+bool PokedexPokemon::baseEvoCheck() const
 {
     return this->baseEvolution;
 }
+float PokedexPokemon::getAvgWeight() const
+{
+    return this->avgWeight;
+}
+float PokedexPokemon::getAvgHeight() const
+{
+    return this->avgHeight;
+}
+std::string PokedexPokemon::getFlavorText() const
+{
+    return this->flavorText;
+}
 
 Attack::Attack(std::string Name, Type Type, int Power) : name(Name), type(Type), power(Power) {}
-std::string Attack::getName()
+std::string Attack::getName() const
 {
     return this->name;
 }
-Type Attack::getType()
+Type Attack::getType() const
 {
     return this->type;
 }
-int Attack::getPower()
+int Attack::getPower() const
 {
     return this->power;
 }
@@ -126,7 +138,7 @@ std::string TypeTtoS(Type type)
     return "None";
 }
 
-void fillPokedex(const std::string &filename, std::vector<PokedexPokemon>& pokedex)
+void fillPokedex(const std::string &filename, std::vector<PokedexPokemon> &pokedex)
 {
     std::ifstream file(filename);
     std::string line;
@@ -135,6 +147,7 @@ void fillPokedex(const std::string &filename, std::vector<PokedexPokemon>& poked
         pokedex.push_back(parsePokedexPokemon(line));
     }
 }
+
 PokedexPokemon parsePokedexPokemon(const std::string &line)
 {
     std::istringstream pokemonLine(line);
