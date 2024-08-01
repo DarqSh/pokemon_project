@@ -1,0 +1,14 @@
+25, Pikachu, Electric, None, 6.0, 0.4, 35, 55, 40, Thunder Shock, Electric, 5, Solar Beam, Grass, 180
+6, Charizard, Fire, Flying, 90.5, 1.7, 78, 84, 78, Karate Chop, Fighting, 8, Flamethrower, Fire, 70
+1, Bulbasaur, Grass, Poison, 6.9, 0.7, 45, 49, 49, Vine Whip, Grass, 7, Hyper Beam, Normal, 150
+7, Squirtle, Water, None, 9.0, 0.5, 44, 48, 65, Rock Throw, Rock, 12, Hydro Pump, Water, 130
+39, Jigglypuff, Normal, Fairy, 5.5, 0.5, 115, 45, 20, Pound, Normal, 7, Dazzling Gleam, Fairy, 100
+94, Gengar, Ghost, Poison, 40.5, 1.5, 60, 65, 60, Ice Shard, Ice, 12, Shadow Ball, Ghost, 100
+65, Alakazam, Psychic, None, 48.0, 1.5, 55, 50, 45, Psycho Cut, Psychic, 5, Psychic, Psychic, 90
+68, Machamp, Fighting, None, 130.0, 1.6, 90, 80, 50, Karate Chop, Fighting, 8, Dynamic Punch, Fighting, 90
+131, Lapras, Water, Ice, 220.0, 2.5, 130, 85, 80, Bullet Seed, Grass, 8, Blizzard, Ice, 130
+34, Nidoking, Poison, Ground, 43.4, 1.8, 2134, 1234, 1234, Mud-Slap, Ground, 18, Sludge Bomb, Poison, 80
+1, Bulbasaur, Grass, Poison, 5.0, 0.8, 1234, 1234, 1234, Poison Sting, Poison, 5, Acid Spray, Poison, 20
+1, Bulbasaur, Grass, Poison, 5.0, 0.5, 345, 345, 345, Tackle, Normal, 5, Hyper Beam, Normal, 150
+1, Bulbasaur, Grass, Poison, 5.0, 0.5, 523, 532, 435, Tackle, Normal, 5, Acid Spray, Poison, 20
+1, Bulbasaur, Grass, Poison, 4.8, 0.5, 345, 456, 567, Poison Jab, Poison, 10, Leaf Blade, Grass, 70

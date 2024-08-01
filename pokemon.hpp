@@ -5,7 +5,7 @@
 
 enum class Type
 {
-    Normal,
+    Normal = 1,
     Fire,
     Water,
     Electric,
@@ -44,13 +44,13 @@ public:
 class PokedexPokemon : public Pokemon
 {
 protected:
-    bool baseEvolution;
-    float avgWeight; // in kg
-    float avgHeight; // in m
-    std::string flavorText;
+    bool base_evolution;
+    float avg_weight; // in kg
+    float avg_height; // in m
+    std::string flavor_text;
 
 public:
-    PokedexPokemon(int index, std::string name, Type type1, Type type2, bool baseEvolution, float avgWeight, float avgHeight, std::string flavorText);
+    PokedexPokemon(int index, std::string name, Type type1, Type type2, bool base_evolution, float avg_weight, float avg_height, std::string flavor_text);
     bool baseEvoCheck() const;
     float getAvgWeight() const;
     float getAvgHeight() const;
@@ -77,20 +77,27 @@ class InventoryPokemon : public Pokemon
 {
 protected:
     // New attributes
-    double weight;
-    double height;
+    float weight;
+    float height;
 
-    int baseHP;
-    int baseCP; // Combat power
-    int baseDefense;
+    int HP;
+    int CP; // Combat power
+    int defence;
 
-    std::string baseAttack;
-    int baseAttackPower;
-    std::string specialAttack;
-    int specialAttackPower;
+    Attack base_attack;
+    Attack special_attack;
+
 
 public:
-    InventoryPokemon(int index, std::string name, Type type1, Type type2, double weight, double height, int baseHP, int baseCP, int baseDefense, std::string baseAttack, int baseAttackPower, std::string specialAttack, int specialAttackPower);
+    InventoryPokemon(int index, std::string name, Type type1, Type type2, float weight, float height, int HP, int CP, int defence, Attack base_attack, Attack special_attack);
+    InventoryPokemon(int index, std::string name, Type type1, Type type2, float weight, float height, int HP, int CP, int defence, std::string base_attack_name, Type base_attack_type, int base_attack_power, std::string special_attack_name, Type special_attack_type, int special_attack_power);
+    float getWeight() const;
+    float getHeight() const;
+    int getHP() const;
+    int getCP() const;
+    int getDefence() const;
+    Attack getBaseAttack() const;
+    Attack getSpecialAttack() const;
 };
 
 Type TypeStoT(std::string stringType);
@@ -99,5 +106,8 @@ std::string TypeTtoS(Type type);
 void fillPokedex(const std::string &filename, std::vector<PokedexPokemon>& pokedex);
 PokedexPokemon parsePokedexPokemon(const std::string &line);
 
-void fillAttacks(const std::string &filename, std::vector<Attack>& baseAttacks, std::vector<Attack>& specialAttacks);
-std::vector<Attack> parseAttacksLine(std::istringstream& line, Type attackType);
+void fillAttacks(const std::string &filename, std::vector<Attack>& base_attacks, std::vector<Attack>& special_attacks);
+std::vector<Attack> parseAttacksLine(std::istringstream& line, Type attack_type);
+
+void fillInventory(const std::string &filename, std::vector<InventoryPokemon>& inventory);
+InventoryPokemon parseInventoryPokemon(const std::string &line);
