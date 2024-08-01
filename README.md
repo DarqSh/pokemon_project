@@ -62,21 +62,21 @@ This terminal-based application provides Pokedex and inventory management functi
 
 ## Installing `ncurses`
 
-#### For Debian/Ubuntu:
+#### For `Debian/Ubuntu`:
 
 ```
 sudo apt-get update
 sudo apt-get install libncurses5-dev libncursesw5-dev
 ```
 
-#### For macOS (using Homebrew):
+#### For `macOS (using Homebrew)`:
 ```
 brew install ncurses
 ```
 
 ## Compilation
 
-Compiled file is already provided in the repository. However, if you'd like to repreduce the compilation yourself, please use the following command:
+Compiled file for `MaOS` is already provided in the repository. However, if you'd like to repreduce the compilation yourself, please use the following command:
 ```
 g++ -fdiagnostics-color=always -g -std=c++20 -pedantic-errors -ggdb -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -lncurses -o <output_name> <source_file>
 ```
