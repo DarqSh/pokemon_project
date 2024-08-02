@@ -41,7 +41,7 @@ This terminal-based application provides Pokedex and inventory management functi
 <img width="1066" alt="inventory_add_weight" src="https://github.com/user-attachments/assets/a1acbd2f-7489-48c4-9e8e-e4678f331afe">
 <img width="1066" alt="inventory_add_height" src="https://github.com/user-attachments/assets/28d76b54-eabb-460e-91a7-5d8fef7b90e6">
 
-- Enter HP, CP, and defense as any 2-to-4-digit integer.
+- Enter HP, CP, and defence as any 2-to-4-digit integer.
 <img width="1066" alt="inventory_add_HP" src="https://github.com/user-attachments/assets/406275bd-799a-495f-8cd1-e3d59ff1b128">
 
 - Choose base and special attacks, with a 20% boost for matching types.
