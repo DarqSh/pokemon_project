@@ -7,21 +7,19 @@ This terminal-based application provides Pokedex and inventory management functi
 ## Features
 
 ### Main Menu
-- **Pokedex**: Access a comprehensive list of Pokemon with details such as type, weight, height, and evolution tree.
-- **Inventory**: Manage your Pokemon collection with attributes including HP, CP, defense, base attack, and special attack.
+- **Pokedex**: Access a comprehensive list of Pokemon with details such as type, avgWeight, avgHeight, and evolution tree.
+- **Inventory**: Manage your Pokemon collection with attributes including HP, CP, defence, base attack, and special attack.
 - **Close**: Exit the application.
 <img width="1066" alt="main_menu" src="https://github.com/user-attachments/assets/24bc06e3-5d77-4842-a09d-42023d263d07">
 
 
 ### Pokedex
-- Opens the Pokedex.
 - Navigate between Pokemon using the arrow keys.
 - Press **`B`** to go back.
 <img width="1066" alt="pokedex" src="https://github.com/user-attachments/assets/4754c442-fbb0-4619-a140-ad0d3d27ee48">
 
 
 ### Inventory
-- Opens the inventory.
 - Navigate between Pokemon using the arrow keys.
 - Press **`D`** to delete a highlighted Pokemon.
 - Press **`A`** to add a new Pokemon.
@@ -76,9 +74,9 @@ brew install ncurses
 
 ## Compilation
 
-Compiled file for `MaOS` is already provided in the repository. However, if you'd like to repreduce the compilation yourself, please use the following command:
+Compiled file for `MacOS` is already provided in the repository. However, if you'd like to repreduce the compilation yourself, please use the following command:
 ```
-g++ -fdiagnostics-color=always -g -std=c++20 -pedantic-errors -ggdb -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -lncurses -o <output_name> <source_file>
+g++ -fdiagnostics-color=always -g -std=c++20 -pedantic-errors -ggdb -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -lncurses -o <output_name> main.cpp
 ```
 
 
