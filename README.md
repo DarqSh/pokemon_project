@@ -74,7 +74,7 @@ brew install ncurses
 
 ## Compilation
 
-Compiled file for `MacOS` is already provided in the repository. However, if you'd like to repreduce the compilation yourself, please use the following command:
+Compiled file for `macOS` is already provided in the repository. However, if you'd like to reproduce the compilation yourself, please use the following command:
 ```
 g++ -fdiagnostics-color=always -g -std=c++20 -pedantic-errors -ggdb -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -lncurses -o <output_name> main.cpp
 ```
